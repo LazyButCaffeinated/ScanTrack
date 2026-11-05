@@ -1,0 +1,10 @@
+services:
+  api:
+    build: .
+    ports: ["127.0.0.1:8000:8000"]   # bind to localhost; put nginx/ALB in front for public access
+    env_file: .env
+    environment:
+      DATABASE_URL: sqlite:////srv/data/scantrack.db
+    volumes:
+      - ./data:/srv/data
+    restart: unless-stopped
